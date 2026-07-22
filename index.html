@@ -312,9 +312,24 @@
         <div class="hero-kicker">Fig. 06 — Open Channels</div>
         <h3 class="contact-title">Let's talk.</h3>
         <p>I am actively seeking Software Developer and Graduate Engineer Trainee opportunities. Feel free to reach out regarding internships, full-time roles, or collaborations.</p>
-        <div class="contact-cta">
-          <a href="mailto:varunkesharwani5@gmail.com" class="btn btn-primary">Email me →</a>
-        </div>
+
+        <form id="contactForm" class="contact-form" action="https://formspree.io/f/mpqvlvao" method="POST">
+          <div class="form-row">
+            <label for="cf-name">Name</label>
+            <input type="text" id="cf-name" name="name" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-email">Your Email</label>
+            <input type="email" id="cf-email" name="email" required>
+          </div>
+          <div class="form-row">
+            <label for="cf-message">Message</label>
+            <textarea id="cf-message" name="message" rows="4" required></textarea>
+          </div>
+          <button type="submit" class="btn btn-primary form-submit">Send Message →</button>
+          <p class="form-status" id="formStatus"></p>
+        </form>
+
         <div class="contact-status">
           <span class="status-pill">Open to work</span>
           <span class="contact-loc">Jabalpur, M.P. · Open to relocation</span>
@@ -438,6 +453,42 @@
       window._toastTimer = setTimeout(() => toast.classList.remove('show'), 1800);
     });
   });
+
+  // Contact form submission (Formspree)
+  const contactForm = document.getElementById('contactForm');
+  const formStatus = document.getElementById('formStatus');
+  if(contactForm){
+    contactForm.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      formStatus.textContent = 'Sending…';
+      formStatus.classList.remove('success','error');
+
+      if(contactForm.action.includes('YOUR_FORM_ID')){
+        formStatus.textContent = 'Form not connected yet — email varunkesharwani5@gmail.com directly.';
+        formStatus.classList.add('error');
+        return;
+      }
+
+      try{
+        const res = await fetch(contactForm.action, {
+          method: 'POST',
+          body: new FormData(contactForm),
+          headers: { 'Accept': 'application/json' }
+        });
+        if(res.ok){
+          formStatus.textContent = "Message sent — I'll get back to you soon.";
+          formStatus.classList.add('success');
+          contactForm.reset();
+        } else {
+          formStatus.textContent = 'Something went wrong — please email me directly instead.';
+          formStatus.classList.add('error');
+        }
+      } catch(err){
+        formStatus.textContent = 'Something went wrong — please email me directly instead.';
+        formStatus.classList.add('error');
+      }
+    });
+  }
 </script>
 
 </body>
