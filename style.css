@@ -148,6 +148,14 @@
     justify-content:center;
     padding-top:140px;
   }
+  .hero-name{
+    font-family:var(--mono);
+    font-size:14px;
+    font-weight:700;
+    color:var(--redline);
+    letter-spacing:.14em;
+    margin-bottom:14px;
+  }
   .hero-kicker{
     font-family:var(--mono);
     font-size:12px;
@@ -237,7 +245,8 @@
     color:var(--redline);
     font-size:14px;
   }
-  .profile-tagline{ color:var(--muted); font-size:14.5px; max-width:480px; }
+  .profile-tagline{ color:var(--muted); font-size:14.5px; max-width:480px; margin-bottom:14px; }
+  .profile-tagline:last-child{ margin-bottom:0; }
 
   .info-card{
     border:1px dashed var(--line);
@@ -440,6 +449,28 @@
   }
   .strength-card h3{ font-size:14.5px; margin-bottom:10px; }
   .strength-card p{ color:var(--muted); font-size:13.5px; }
+
+  .transition-banner{
+    max-width:960px;
+    margin:0 auto;
+    padding:40px 32px 8px 32px;
+    text-align:center;
+    border-top:1px dashed var(--line);
+  }
+  @media(max-width:760px){ .transition-banner{ padding:30px 20px 4px 20px; } }
+  .transition-lead{
+    font-family:var(--mono);
+    font-size:clamp(18px,2.4vw,24px);
+    font-weight:600;
+    color:var(--ink);
+    margin-bottom:8px;
+  }
+  .transition-sub{
+    font-size:14px;
+    color:var(--muted);
+    max-width:480px;
+    margin:0 auto;
+  }
 
   .contact-wrap{
     display:grid;
